@@ -1,0 +1,8 @@
+:root {
+  --default-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  --font-body: 1.6rem;
+
+  --space-sm: 1.6rem;
+  --space-md: 2.4rem;
+}

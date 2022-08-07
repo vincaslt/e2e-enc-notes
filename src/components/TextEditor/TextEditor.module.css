@@ -1,0 +1,16 @@
+.textEditorContainer {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.textEditor {
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-left: var(--space-sm);
+  padding-right: var(--space-sm);
+}

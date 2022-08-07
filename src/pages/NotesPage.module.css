@@ -1,0 +1,14 @@
+.pageContainer {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+}
+
+.editorContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: stretch;
+}

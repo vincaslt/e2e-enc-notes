@@ -1,0 +1,15 @@
+@import 'normalize.css';
+@import './variables.module.css';
+
+:global(*) {
+  box-sizing: border-box;
+}
+
+:global(html) {
+  font-size: 62.5%; /* =10px */
+}
+
+:global(body) {
+  font-family: var(--default-font);
+  font-size: var(--font-body);
+}
