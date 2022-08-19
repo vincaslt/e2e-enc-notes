@@ -1,4 +1,3 @@
-import { Editor } from '@tiptap/react'
 import { HTMLAttributes, ReactNode } from 'react'
 import classnames from '~/utils/classnames'
 import styles from './TextEditor.module.css'

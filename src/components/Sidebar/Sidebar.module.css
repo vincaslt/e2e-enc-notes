@@ -4,8 +4,54 @@
   display: flex;
   flex-direction: column;
   border-right: 1px solid var(--color-gray-200);
+  overflow: auto;
 }
 
 .sidebarItem {
   padding: var(--space-4);
+  cursor: pointer;
+  border-radius: var(--rounding-sm);
+  margin-left: var(--space-4);
+  margin-right: var(--space-4);
+}
+
+.sidebarItem:hover {
+  background-color: var(--color-gray-100);
+}
+
+.sidebarItem.sidebarItemActive {
+  background-color: var(--color-blue-100);
+}
+
+.sidebarButton {
+  background-color: var(--color-gray-100);
+  border-radius: var(--rounding-sm);
+  border: none;
+  line-height: 1;
+  min-height: 4rem;
+  cursor: pointer;
+  margin: var(--space-4) var(--space-4) var(--space-2) var(--space-4);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.sidebarButton:hover {
+  background-color: var(--color-gray-200);
+}
+
+.sidebarButton:active {
+  background-color: var(--color-gray-300);
+}
+
+.sidebarList {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  gap: var(--space-1);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
 }

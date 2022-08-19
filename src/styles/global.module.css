@@ -10,6 +10,7 @@
 }
 
 :global(body) {
+  color: var(--color-gray-900);
   font-family: var(--default-font);
   font-size: var(--font-body);
 }

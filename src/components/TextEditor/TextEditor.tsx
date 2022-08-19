@@ -1,18 +1,43 @@
-import { EditorContent, useEditor } from '@tiptap/react'
+import {
+  Content,
+  EditorContent,
+  generateText,
+  JSONContent,
+  useEditor,
+} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Toolbar from '~/components/TextEditor/Toolbar'
 import styles from './TextEditor.module.css'
 
-function TextEditor() {
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: '<p>Hello World!</p>',
-    editorProps: {
-      attributes: {
-        class: styles.textEditor,
+const extensions = [StarterKit]
+
+interface Props {
+  editorId: string // unique id to recreate the editor when it changes (e.g. note id)
+  content: Content | null
+  onChange: (content: JSONContent, title?: string) => void
+}
+
+function TextEditor({ editorId, content, onChange }: Props) {
+  const editor = useEditor(
+    {
+      extensions,
+      content,
+      editorProps: {
+        attributes: {
+          class: styles.textEditor,
+        },
+      },
+      onUpdate: ({ editor }) => {
+        const editorContent = editor.getJSON()
+        const firstNodeContent = editorContent.content?.[0]
+        onChange(
+          editorContent,
+          firstNodeContent && generateText(firstNodeContent, extensions)
+        )
       },
     },
-  })
+    [editorId]
+  )
 
   return (
     <div className={styles.textEditorContainer}>

@@ -33,6 +33,7 @@
 .toolbarButton {
   background-color: var(--color-white);
   border-radius: var(--rounding-sm);
+  color: var(--color-gray-900);
   border: none;
   line-height: 1;
   height: 3.2rem;
