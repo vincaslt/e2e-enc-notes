@@ -1,6 +1,8 @@
 :root {
   --default-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+  --font-xs: 1.2rem;
+  --font-sm: 1.4rem;
   --font-body: 1.6rem;
 
   --space-1: 0.4rem;
@@ -34,4 +36,6 @@
   --color-blue-700: #1d4ed8;
   --color-blue-800: #1e40af;
   --color-blue-900: #1e3a8a;
+
+  --shadow-sm: 0px 2px 5px 0px var(--color-gray-200);
 }

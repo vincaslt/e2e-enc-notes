@@ -48,7 +48,7 @@ function NotesPage() {
   }
 
   return (
-    <div className={styles.pageContainer}>
+    <>
       <Sidebar.Root>
         <Sidebar.Button onClick={handleCreateNewNote}>
           <AiOutlinePlus /> New note
@@ -77,7 +77,7 @@ function NotesPage() {
           <button onClick={handleCreateNewNote}>Create new</button>
         )}
       </div>
-    </div>
+    </>
   )
 }
 

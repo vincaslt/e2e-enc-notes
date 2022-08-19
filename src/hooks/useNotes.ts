@@ -5,7 +5,8 @@ import storage from '~/utils/localStorage'
 
 const STORAGE_KEY = 'notes'
 
-// TODO: encryption
+// TODO: auto-save
+
 function useNotes() {
   const [notes, setNotes] = useState<Record<string, Note>>({})
 

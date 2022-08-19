@@ -6,7 +6,8 @@ const storage = {
     localStorage.setItem(key, JSON.stringify(value))
   },
   get: <T>(key: string, defaultValue?: T): T => {
-    return (localStorage.getItem(key) ?? defaultValue) as T
+    const value = localStorage.getItem(key)
+    return (value ? JSON.parse(value) : defaultValue) as T
   },
   remove: (key: string) => {
     localStorage.removeItem(key)

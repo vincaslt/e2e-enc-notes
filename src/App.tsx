@@ -1,13 +1,10 @@
-import NotesPage from '~/pages/NotesPage'
+import { Outlet } from 'react-router'
 import styles from './App.module.css'
 
-/**
- * Acts as an entry point for the application.
- */
 function App() {
   return (
     <div className={styles.appContainer}>
-      <NotesPage />
+      <Outlet />
     </div>
   )
 }

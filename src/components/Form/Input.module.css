@@ -1,0 +1,6 @@
+.input {
+  border: 1px solid var(--color-gray-200);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--rounding-sm);
+  height: 3.2rem;
+}

@@ -1,0 +1,23 @@
+.centeredContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.loginContainer {
+  width: 100%;
+  max-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.message {
+  font-size: var(--font-sm);
+  padding: var(--space-4);
+  border-radius: var(--rounding-sm);
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+  margin-bottom: var(--space-4);
+}
