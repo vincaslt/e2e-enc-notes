@@ -1,5 +1,6 @@
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import Toolbar from '~/components/TextEditor/Toolbar'
 import styles from './TextEditor.module.css'
 
 function TextEditor() {
@@ -14,7 +15,10 @@ function TextEditor() {
   })
 
   return (
-    <EditorContent className={styles.textEditorContainer} editor={editor} />
+    <div className={styles.textEditorContainer}>
+      <Toolbar editor={editor} />
+      <EditorContent className={styles.textEditorContent} editor={editor} />
+    </div>
   )
 }
 

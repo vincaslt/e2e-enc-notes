@@ -3,9 +3,9 @@
   width: 256px;
   display: flex;
   flex-direction: column;
-  background-color: #f5f5f5;
+  border-right: 1px solid var(--color-gray-200);
 }
 
 .sidebarItem {
-  padding: var(--space-sm);
+  padding: var(--space-4);
 }
