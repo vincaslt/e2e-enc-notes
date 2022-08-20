@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { UserProvider } from '~/hooks/user'
+import { UserProvider } from '~/modules/user'
 import Router from '~/Router'
 import '~/styles/global.module.css'
 

@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import Form from '~/components/Form'
-import { useUser } from '~/hooks/user'
+import { useUser } from '~/modules/user'
 import styles from './LoginPage.module.css'
 
 function LoginPage() {

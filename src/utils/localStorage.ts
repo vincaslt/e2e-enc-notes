@@ -1,7 +1,7 @@
 const storage = {
   set: (
     key: string,
-    value: string | number | object | boolean | null | undefined
+    value: string | number | object | boolean | null | undefined | unknown
   ) => {
     localStorage.setItem(key, JSON.stringify(value))
   },

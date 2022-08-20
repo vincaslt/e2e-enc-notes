@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from '~/App'
 import PageLayout from '~/layouts/PageLayout'
 import LoginPage from '~/pages/LoginPage'
-import { useUser } from '~/hooks/user'
+import { useUser } from '~/modules/user'
 
 function Router() {
   const { isLoggedIn } = useUser()

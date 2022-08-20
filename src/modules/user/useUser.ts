@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { UserContext } from '~/hooks/user/UserProvider'
+import { UserContext } from '~/modules/user/UserProvider'
 import { createPassphrase, decrypt } from '~/utils/encryption'
 import storage from '~/utils/localStorage'
 

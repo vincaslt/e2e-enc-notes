@@ -1,13 +1,13 @@
 import { JSONContent } from '@tiptap/react'
 import { useEffect, useMemo, useState } from 'react'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { AiOutlinePlus, AiOutlineSave } from 'react-icons/ai'
 import Sidebar from '~/components/Sidebar'
 import TextEditor from '~/components/TextEditor'
-import useNotes from '~/hooks/useNotes'
+import useNotes from '~/modules/notes/useNotes'
 import styles from './NotesPage.module.css'
 
 function NotesPage() {
-  const { loadNotes, notes, createNote, updateNote } = useNotes()
+  const { loadNotes, notes, createNote, updateNote, saveNote } = useNotes()
   const [activeNoteId, setActiveNoteId] = useState<string | null>(null)
 
   useEffect(() => {
@@ -47,11 +47,20 @@ function NotesPage() {
     setActiveNoteId(id)
   }
 
+  const handleSaveNote = () => {
+    if (activeNote) {
+      saveNote(activeNote)
+    }
+  }
+
   return (
     <>
       <Sidebar.Root>
         <Sidebar.Button onClick={handleCreateNewNote}>
           <AiOutlinePlus /> New note
+        </Sidebar.Button>
+        <Sidebar.Button onClick={handleSaveNote}>
+          <AiOutlineSave /> Save
         </Sidebar.Button>
         <Sidebar.List>
           {notesList.map((note) => (

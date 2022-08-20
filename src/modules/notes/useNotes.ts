@@ -1,29 +1,28 @@
 import cuid from 'cuid'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
+import useEncryptedNotesStorage from '~/modules/notes/useEncryptedNotesStorage'
 import { Note } from '~/types/Notes'
-import storage from '~/utils/localStorage'
-
-const STORAGE_KEY = 'notes'
 
 // TODO: auto-save
 
 function useNotes() {
+  const persistence = useEncryptedNotesStorage()
   const [notes, setNotes] = useState<Record<string, Note>>({})
 
-  const loadNotes = useCallback(() => {
-    const notes = storage.get<Record<string, Note>>(STORAGE_KEY, {})
+  const loadNotes = useCallback(async () => {
+    const notes = await persistence.loadNotes()
     setNotes(notes)
-  }, [])
+  }, [persistence])
 
   const saveNote = useCallback(
-    ({ id = cuid(), ...note }: Omit<Note, 'updatedAt'>) => {
-      storage.set(`${STORAGE_KEY}:${id}`, {
-        ...note,
-        updatedAt: new Date().toISOString(),
-      })
-      storage.set(STORAGE_KEY, Object.keys(notes))
+    async (note: Omit<Note, 'updatedAt'>) => {
+      const updatedNote = await persistence.saveNote(note)
+      setNotes((notes) => ({
+        ...notes,
+        [updatedNote.id]: updatedNote,
+      }))
     },
-    [notes]
+    [persistence]
   )
 
   const updateNote = useCallback((note: Omit<Note, 'updatedAt'>) => {
@@ -52,13 +51,16 @@ function useNotes() {
     []
   )
 
-  return {
-    notes,
-    updateNote,
-    loadNotes,
-    saveNote,
-    createNote,
-  }
+  return useMemo(
+    () => ({
+      notes,
+      updateNote,
+      loadNotes,
+      saveNote,
+      createNote,
+    }),
+    [createNote, loadNotes, notes, saveNote, updateNote]
+  )
 }
 
 export default useNotes
