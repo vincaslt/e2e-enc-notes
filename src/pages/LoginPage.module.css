@@ -12,12 +12,3 @@
   flex-direction: column;
   gap: var(--space-5);
 }
-
-.message {
-  font-size: var(--font-sm);
-  padding: var(--space-4);
-  border-radius: var(--rounding-sm);
-  background-color: var(--color-gray-100);
-  color: var(--color-gray-600);
-  margin-bottom: var(--space-4);
-}

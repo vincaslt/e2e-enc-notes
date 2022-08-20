@@ -1,0 +1,13 @@
+.message {
+  font-size: var(--font-sm);
+  padding: var(--space-4);
+  border-radius: var(--rounding-sm);
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  margin-bottom: var(--space-2);
+  font-weight: 700;
+}

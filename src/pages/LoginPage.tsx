@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import Form from '~/components/Form'
+import Message from '~/components/Message/Message'
 import { useUser } from '~/modules/user'
 import styles from './LoginPage.module.css'
 
@@ -22,9 +23,9 @@ function LoginPage() {
   return (
     <div className={styles.centeredContainer}>
       <form className={styles.loginContainer} onSubmit={handleSubmit}>
-        <div className={styles.message}>
+        <Message>
           Your password will be used to encrypt and decrypt your notes.
-        </div>
+        </Message>
         <Form.Control>
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Input

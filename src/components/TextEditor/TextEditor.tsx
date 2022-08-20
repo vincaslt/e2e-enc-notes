@@ -14,10 +14,11 @@ const extensions = [StarterKit]
 interface Props {
   editorId: string // unique id to recreate the editor when it changes (e.g. note id)
   content: Content | null
+  isSaving: boolean
   onChange: (content: JSONContent, title?: string) => void
 }
 
-function TextEditor({ editorId, content, onChange }: Props) {
+function TextEditor({ editorId, content, onChange, isSaving }: Props) {
   const editor = useEditor(
     {
       extensions,
@@ -41,7 +42,7 @@ function TextEditor({ editorId, content, onChange }: Props) {
 
   return (
     <div className={styles.textEditorContainer}>
-      <Toolbar editor={editor} />
+      <Toolbar editor={editor} isSaving={isSaving} />
       <EditorContent className={styles.textEditorContent} editor={editor} />
     </div>
   )
