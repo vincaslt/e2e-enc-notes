@@ -1,12 +1,11 @@
 import { JSONContent } from '@tiptap/react'
-import { useCallback, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import Message from '~/components/Message/Message'
 import Sidebar from '~/components/Sidebar'
 import TextEditor from '~/components/TextEditor'
 import useNotes from '~/modules/notes/useNotes'
-import useAutosave from '~/modules/useAutosave'
-import { Note } from '~/types/Notes'
+import useDebounce from '~/modules/useDebounce'
 import styles from './NotesPage.module.css'
 
 function NotesPage() {
@@ -16,21 +15,10 @@ function NotesPage() {
 
   const activeNote = activeNoteId ? notes[activeNoteId] : null
 
-  const handleSaveNote = useCallback(
-    async (note: Note | null) => {
-      if (note) {
-        saveNote(note)
-      }
-    },
-    [saveNote]
-  )
-
-  const { isSaving } = useAutosave({
-    save: handleSaveNote,
-    watch: activeNote,
-    getId: (note) => note?.id,
-    ignoreInitial: true,
-  })
+  const [
+    debouncedSaveNote,
+    { flushAndReset: flushDebouncedSaveNote, ...saveStates },
+  ] = useDebounce(saveNote)
 
   const notesList = useMemo(
     () =>
@@ -47,7 +35,9 @@ function NotesPage() {
     title = 'New note'
   ) => {
     if (activeNote) {
-      updateNote({ id: activeNote.id, title, content })
+      const updatedNote = { id: activeNote.id, title, content }
+      updateNote(updatedNote)
+      debouncedSaveNote(updatedNote)
     }
   }
 
@@ -60,7 +50,18 @@ function NotesPage() {
   }
 
   const handleChangeActiveNote = (id: string) => {
+    flushDebouncedSaveNote()
     setActiveNoteId(id)
+  }
+
+  const getNoteSaveStatus = () => {
+    if (saveStates.isPending) {
+      return 'pending'
+    }
+    if (saveStates.isExecuted) {
+      return 'saved'
+    }
+    return 'none'
   }
 
   return (
@@ -85,7 +86,7 @@ function NotesPage() {
       <div className={styles.editorContainer}>
         {activeNote ? (
           <TextEditor
-            isSaving={isSaving}
+            saveStatus={getNoteSaveStatus()}
             editorId={activeNote.id}
             onChange={handleChangeNoteContent}
             content={activeNote.content}

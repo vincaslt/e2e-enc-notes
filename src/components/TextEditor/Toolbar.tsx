@@ -5,10 +5,10 @@ import { AiOutlineBold, AiOutlineItalic } from 'react-icons/ai'
 
 interface Props {
   editor: Editor | null
-  isSaving: boolean
+  saveStatus: 'none' | 'pending' | 'saved'
 }
 
-function Toolbar({ editor, isSaving }: Props) {
+function Toolbar({ editor, saveStatus }: Props) {
   return (
     <div className={styles.toolbar}>
       <div className={styles.toolbarActions}>
@@ -25,7 +25,8 @@ function Toolbar({ editor, isSaving }: Props) {
           isActive={editor?.isActive('italic')}
         />
       </div>
-      {isSaving && 'Saving...'}
+      {saveStatus === 'pending' && 'Unsaved changes...'}
+      {saveStatus === 'saved' && 'Saved!'}
     </div>
   )
 }

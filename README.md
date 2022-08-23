@@ -111,6 +111,7 @@ Feel free to propose your own in the issues.
 ### Fix an issue
 
 - [Easy] Currently the notes are saved 1 second after you finish typing. If you refresh the app in that one second, the note will not be saved. Prevent leaving the page, if the note is still being saved.
+- [Easy] Long note titles overflow the sidebar, add ellipsis (e.g. `"Very long ti..."`) on such titles.
 - [Very Hard] Make it so you don't have to keep entering the password on every refresh, after the initial authentication.
 
 ### Who am I?

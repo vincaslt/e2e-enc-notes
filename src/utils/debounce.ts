@@ -1,11 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-function debounce<F extends any[]>(fn: (...args: F) => void, delay: number) {
+const debounce = <Args extends unknown[]>(
+  fn: (...args: Args) => void,
+  delay: number
+) => {
   let timeoutID: number | undefined
-  return (...args: F) => {
-    clearTimeout(timeoutID)
-    timeoutID = window.setTimeout(() => fn(...args), delay)
+  let lastArgs: Args | undefined
+
+  const run = () => {
+    if (lastArgs) {
+      fn(...lastArgs)
+      lastArgs = undefined
+    }
   }
+
+  function debounced(...args: Args) {
+    clearTimeout(timeoutID)
+    lastArgs = args
+    timeoutID = window.setTimeout(run, delay)
+  }
+
+  debounced.flush = () => {
+    clearTimeout(timeoutID)
+    run()
+  }
+
+  return debounced
 }
 
 export default debounce

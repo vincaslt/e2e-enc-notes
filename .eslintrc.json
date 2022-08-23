@@ -17,13 +17,7 @@
   "plugins": ["react", "@typescript-eslint", "react-hooks"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react/display-name": "off",
-    "react-hooks/exhaustive-deps": [
-      "warn",
-      {
-        "additionalHooks": "useUpdateEffect"
-      }
-    ]
+    "react/display-name": "off"
   },
   "settings": {
     "import/resolver": {

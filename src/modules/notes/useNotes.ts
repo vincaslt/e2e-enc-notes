@@ -10,6 +10,7 @@ function useNotes() {
   const saveNote = useCallback(
     (note: Omit<Note, 'updatedAt'>) => {
       const updatedNote = persistence.saveNote(note)
+      console.log('save', updatedNote)
       setNotes((notes) => ({
         ...notes,
         [updatedNote.id]: updatedNote,
