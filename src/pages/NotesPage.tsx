@@ -1,5 +1,5 @@
 import { JSONContent } from '@tiptap/react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import Message from '~/components/Message/Message'
 import Sidebar from '~/components/Sidebar'
@@ -10,7 +10,7 @@ import { Note } from '~/types/Notes'
 import styles from './NotesPage.module.css'
 
 function NotesPage() {
-  const { loadNotes, notes, createNote, updateNote, saveNote } = useNotes()
+  const { notes, createNote, updateNote, saveNote } = useNotes()
 
   const [activeNoteId, setActiveNoteId] = useState<string | null>(null)
 
@@ -31,10 +31,6 @@ function NotesPage() {
     getId: (note) => note?.id,
     ignoreInitial: true,
   })
-
-  useEffect(() => {
-    loadNotes()
-  }, [loadNotes])
 
   const notesList = useMemo(
     () =>

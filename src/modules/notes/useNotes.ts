@@ -3,20 +3,13 @@ import { useCallback, useMemo, useState } from 'react'
 import useEncryptedNotesStorage from '~/modules/notes/useEncryptedNotesStorage'
 import { Note } from '~/types/Notes'
 
-// TODO: auto-save
-
 function useNotes() {
   const persistence = useEncryptedNotesStorage()
-  const [notes, setNotes] = useState<Record<string, Note>>({})
-
-  const loadNotes = useCallback(async () => {
-    const notes = await persistence.loadNotes()
-    setNotes(notes)
-  }, [persistence])
+  const [notes, setNotes] = useState(() => persistence.loadNotes())
 
   const saveNote = useCallback(
-    async (note: Omit<Note, 'updatedAt'>) => {
-      const updatedNote = await persistence.saveNote(note)
+    (note: Omit<Note, 'updatedAt'>) => {
+      const updatedNote = persistence.saveNote(note)
       setNotes((notes) => ({
         ...notes,
         [updatedNote.id]: updatedNote,
@@ -55,11 +48,10 @@ function useNotes() {
     () => ({
       notes,
       updateNote,
-      loadNotes,
       saveNote,
       createNote,
     }),
-    [createNote, loadNotes, notes, saveNote, updateNote]
+    [createNote, notes, saveNote, updateNote]
   )
 }
 

@@ -14,25 +14,25 @@ function useEncryptedNotesStorage({
 }: Params = {}) {
   const encryption = useNotesEncryption()
 
-  const loadNotes = useCallback(async (): Promise<Record<string, Note>> => {
+  const loadNotes = useCallback(() => {
     const noteIds = storage.get<string[]>(storageKey, [])
     const notes: Record<string, Note> = {}
-    noteIds.forEach(async (id) => {
+    noteIds.forEach((id) => {
       const note = storage.get(`${storageKey}:${id}`, '')
-      const decryptedNote = await encryption.decryptNote(note)
+      const decryptedNote = encryption.decryptNote(note)
       notes[decryptedNote.id] = decryptedNote
     })
     return notes
   }, [encryption, storageKey])
 
   const saveNote = useCallback(
-    async (note: Omit<Note, 'updatedAt'>): Promise<Note> => {
+    (note: Omit<Note, 'updatedAt'>) => {
       // Update the note updatedAt date and persist into local storage
       const updatedNote = {
         ...note,
         updatedAt: new Date().toISOString(),
       }
-      const encryptedNote = await encryption.encryptNote(updatedNote)
+      const encryptedNote = encryption.encryptNote(updatedNote)
       storage.set(`${storageKey}:${updatedNote.id}`, encryptedNote)
 
       // Update the list of existing notes

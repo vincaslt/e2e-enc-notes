@@ -7,19 +7,16 @@ function useNotesEncryption() {
   const { passphrase } = useUser()
 
   const encryptNote = useCallback(
-    async (note: Note) => {
+    (note: Note) => {
       return encrypt(JSON.stringify(note), passphrase)
     },
     [passphrase]
   )
 
   const decryptNote = useCallback(
-    async (encryptedNote: string): Promise<Note> => {
+    (encryptedNote: string) => {
       const note = decrypt(encryptedNote, passphrase)
-      if (!note) {
-        throw new Error("Couldn't decrypt note")
-      }
-      return JSON.parse(note)
+      return note ? JSON.parse(note) : null
     },
     [passphrase]
   )
