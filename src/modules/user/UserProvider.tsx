@@ -12,7 +12,6 @@ interface Props {
 }
 
 export const UserProvider = ({ children }: Props) => {
-  // TODO: decrypt passphrase in local storage and store in context
   const [passphrase, setPassphrase] = useState<string>('')
 
   return (

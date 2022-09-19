@@ -1,12 +1,12 @@
-import { Outlet } from 'react-router'
+import { ReactNode } from 'react'
 import styles from './PageLayout.module.css'
 
-function PageLayout() {
-  return (
-    <div className={styles.pageContainer}>
-      <Outlet />
-    </div>
-  )
+interface Props {
+  children: ReactNode
+}
+
+function PageLayout({ children }: Props) {
+  return <div className={styles.pageContainer}>{children}</div>
 }
 
 export default PageLayout

@@ -4,6 +4,7 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import Message from '~/components/Message/Message'
 import Sidebar from '~/components/Sidebar'
 import TextEditor from '~/components/TextEditor'
+import PageLayout from '~/layouts/PageLayout'
 import useNotes from '~/modules/notes/useNotes'
 import useDebounce from '~/modules/useDebounce'
 import styles from './NotesPage.module.css'
@@ -65,7 +66,7 @@ function NotesPage() {
   }
 
   return (
-    <>
+    <PageLayout>
       <Sidebar.Root>
         <Sidebar.Button onClick={handleCreateNewNote}>
           <AiOutlinePlus /> New note
@@ -99,7 +100,7 @@ function NotesPage() {
           </div>
         )}
       </div>
-    </>
+    </PageLayout>
   )
 }
 
